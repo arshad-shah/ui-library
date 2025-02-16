@@ -7,3 +7,5 @@ export { EmptyState } from '@/components/EmptyState';
 export { PasswordRequirements, PASSWORD_REQUIREMENTS } from '@/components/PasswordRequirements';
 export { ErrorState } from '@/components/ErrorState';
 export { ProgressBar } from '@/components/ProgressBar';
+export { CircularProgressBar } from '@/components/CircularProgressBar';
+export { Input } from '@/components/Input';
