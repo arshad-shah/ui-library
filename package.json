@@ -29,8 +29,9 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "prepare": "pnpm run build",
-    "release": "pnpm run build && changeset publish",
-    "version": "changeset version"
+    "release": "pnpm build && changeset publish",
+    "version": "changeset version && pnpm install --lockfile-only",
+    "changeset": "changeset"
   },
   "peerDependencies": {
     "react": "^18.2.0",
