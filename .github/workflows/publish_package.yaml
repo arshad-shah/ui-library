@@ -1,38 +1,43 @@
-# .github/workflows/publish.yml
-name: Publish Package
+name: Release
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  publish:
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - uses: actions/setup-node@v4
+      - name: Checkout Repo
+        uses: actions/checkout@v4
         with:
-          node-version: '20'
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
-      
-      - uses: pnpm/action-setup@v3
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3
         with:
-          version: 8
-      
-      - name: Install dependencies
+          version: 9
+
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
-      
-      - name: Run tests
-        run: pnpm test
-        
-      - name: Bump version
-        run: pnpm version patch --no-git-tag-version
-      
-      - name: Build
-        run: pnpm build
-      
-      - name: Publish
-        run: pnpm publish --access public --no-git-checks
+
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm run release
+          commit: "chore: version packages"
+          title: "chore: version packages"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
