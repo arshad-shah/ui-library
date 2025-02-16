@@ -1,0 +1,57 @@
+{
+  "git_info": {
+    "remote_url": "https://github.com/arshad-shah/ui-library.git",
+    "current_branch": "master",
+    "latest_tag": "v0.2.0",
+    "contributors": "     6\tArshad Shah\n     1\tArshad shah"
+  },
+  "dependencies": {
+    "python": [],
+    "node": [
+      "@radix-ui/react-checkbox",
+      "@storybook/addon-a11y",
+      "@storybook/addon-actions",
+      "@tailwindcss/vite",
+      "clsx",
+      "framer-motion",
+      "lucide-react",
+      "tailwind-merge"
+    ],
+    "other": []
+  },
+  "structure": {
+    "directories": [
+      ".changeset",
+      ".github",
+      ".github\\workflows",
+      ".storybook",
+      "dist",
+      "dist\\cjs",
+      "dist\\esm",
+      "dist\\types",
+      "src",
+      "src\\components",
+      "src\\components\\Alert",
+      "src\\components\\Button",
+      "src\\components\\checkbox",
+      "src\\components\\Dropdown",
+      "src\\components\\EmptyState",
+      "src\\components\\ErrorState",
+      "src\\components\\Label",
+      "src\\components\\PasswordRequirements",
+      "src\\components\\ProgressBar",
+      "src\\lib",
+      "src\\styles",
+      "src\\test"
+    ],
+    "key_files": [
+      ".\\package.json",
+      ".changeset\\README.md"
+    ],
+    "test_files": [],
+    "doc_files": [
+      ".changeset\\great-cheetahs-reflect.md",
+      ".github\\workflows\\pull_request_template.md"
+    ]
+  }
+}
