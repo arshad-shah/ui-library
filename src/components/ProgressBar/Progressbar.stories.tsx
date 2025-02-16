@@ -1,25 +1,25 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { ProgressBar } from "./Progressbar";
+import { ProgressBar } from './Progressbar';
 
 const meta: Meta<typeof ProgressBar> = {
   component: ProgressBar,
-  title: "UI/ProgressBar", // Optional title for organization in Storybook
+  title: 'UI/ProgressBar', // Optional title for organization in Storybook
   argTypes: {
-    value: { control: "number", defaultValue: 50 }, // Default value for value prop
-    max: { control: "number", defaultValue: 100 },
+    value: { control: 'number', defaultValue: 50 }, // Default value for value prop
+    max: { control: 'number', defaultValue: 100 },
     variant: {
-      control: "radio",
-      options: ["default", "success", "warning", "danger", "info"],
-      defaultValue: "default",
+      control: 'radio',
+      options: ['default', 'success', 'warning', 'danger', 'info'],
+      defaultValue: 'default',
     },
-    showPercentage: { control: "boolean", defaultValue: false },
-    animated: { control: "boolean", defaultValue: false },
-    size: { control: "radio", options: ["sm", "md", "lg"], defaultValue: "md" },
+    showPercentage: { control: 'boolean', defaultValue: false },
+    animated: { control: 'boolean', defaultValue: false },
+    size: { control: 'radio', options: ['sm', 'md', 'lg'], defaultValue: 'md' },
   },
-  args:{
-    className: "m-4",
-  }
+  args: {
+    className: 'm-4',
+  },
 } satisfies Meta<typeof ProgressBar>;
 
 export default meta;
@@ -35,7 +35,7 @@ export const Default: Story = {
 export const Success: Story = {
   args: {
     value: 80,
-    variant: "success",
+    variant: 'success',
     showPercentage: true,
   },
 };
@@ -43,7 +43,7 @@ export const Success: Story = {
 export const Warning: Story = {
   args: {
     value: 60,
-    variant: "warning",
+    variant: 'warning',
     showPercentage: true,
   },
 };
@@ -51,7 +51,7 @@ export const Warning: Story = {
 export const Danger: Story = {
   args: {
     value: 40,
-    variant: "danger",
+    variant: 'danger',
     showPercentage: true,
   },
 };
@@ -67,7 +67,7 @@ export const Animated: Story = {
 export const Small: Story = {
   args: {
     value: 30,
-    size: "sm",
+    size: 'sm',
     showPercentage: true,
   },
 };
@@ -75,7 +75,7 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     value: 90,
-    size: "lg",
+    size: 'lg',
     showPercentage: true,
   },
 };

@@ -1,12 +1,12 @@
-import React from "react";
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import Label  from "@/components/Label";
+import React from 'react';
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+import Label from '@/components/Label';
 
 export interface CheckboxProps
   extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> {
   id?: string;
-  checked?: boolean | "indeterminate";
-  onCheckedChange?: (checked: boolean | "indeterminate") => void;
+  checked?: boolean | 'indeterminate';
+  onCheckedChange?: (checked: boolean | 'indeterminate') => void;
   disabled?: boolean;
   className?: string;
   label?: string;
@@ -15,7 +15,7 @@ export interface CheckboxProps
 export const Checkbox = React.forwardRef<
   React.ComponentRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
->(({ className = "", label, ...props }, ref) => (
+>(({ className = '', label, ...props }, ref) => (
   <div className="flex items-center gap-2">
     <CheckboxPrimitive.Root
       ref={ref}
@@ -55,4 +55,4 @@ export const Checkbox = React.forwardRef<
   </div>
 ));
 
-Checkbox.displayName = "Checkbox";
+Checkbox.displayName = 'Checkbox';

@@ -1,6 +1,6 @@
-import React from "react";
-import { AlertCircle } from "lucide-react";
-import Alert from "../Alert";
+import React from 'react';
+import { AlertCircle } from 'lucide-react';
+import Alert from '../Alert';
 
 interface ErrorStateProps {
   /** The error message to display */
@@ -16,8 +16,8 @@ interface ErrorStateProps {
 export const ErrorState: React.FC<ErrorStateProps> = ({
   message,
   onRetry,
-  title = "Oops! Something went wrong",
-  supportMessage = "If this problem persists, please contact support"
+  title = 'Oops! Something went wrong',
+  supportMessage = 'If this problem persists, please contact support',
 }) => {
   const handleRefresh = React.useCallback((): void => {
     window.location.reload();
@@ -40,15 +40,15 @@ export const ErrorState: React.FC<ErrorStateProps> = ({
           className="w-full shadow-xl border-2"
           actions={[
             {
-              label: "Try Again",
+              label: 'Try Again',
               onClick: onRetry || (() => {}),
-              variant: "primary"
+              variant: 'primary',
             },
             {
-              label: "Refresh Page",
+              label: 'Refresh Page',
               onClick: handleRefresh,
-              variant: "secondary"
-            }
+              variant: 'secondary',
+            },
           ]}
         >
           <p className="text-base">{message}</p>

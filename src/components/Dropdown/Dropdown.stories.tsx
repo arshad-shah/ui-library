@@ -1,5 +1,5 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import { Dropdown, type DropdownItemType } from "./Dropdown";
+import type { Meta, StoryFn } from '@storybook/react';
+import { Dropdown, type DropdownItemType } from './Dropdown';
 import {
   Settings,
   Trash,
@@ -9,18 +9,18 @@ import {
   Share,
   Edit,
   Star,
-} from "lucide-react";
-import { useState, useRef } from "react";
+} from 'lucide-react';
+import { useState, useRef } from 'react';
 
 const meta: Meta<typeof Dropdown> = {
-  title: "UI/Dropdown",
+  title: 'UI/Dropdown',
   component: Dropdown,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     docs: {
       description: {
         component:
-          "A flexible dropdown menu component with support for icons, descriptions, and multiple variants.",
+          'A flexible dropdown menu component with support for icons, descriptions, and multiple variants.',
       },
     },
   },
@@ -42,20 +42,20 @@ export const Basic: StoryFn<typeof Dropdown> = () => {
 
   const items: DropdownItemType[] = [
     {
-      label: "Edit",
+      label: 'Edit',
       icon: Edit,
-      onClick: () => console.log("Edit clicked"),
+      onClick: () => console.log('Edit clicked'),
     },
     {
-      label: "Share",
+      label: 'Share',
       icon: Share,
-      onClick: () => console.log("Share clicked"),
+      onClick: () => console.log('Share clicked'),
     },
     {
-      label: "Delete",
+      label: 'Delete',
       icon: Trash,
-      onClick: () => console.log("Delete clicked"),
-      variant: "danger",
+      onClick: () => console.log('Delete clicked'),
+      variant: 'danger',
     },
   ];
 
@@ -85,23 +85,23 @@ export const WithDescriptions: StoryFn<typeof Dropdown> = () => {
 
   const items: DropdownItemType[] = [
     {
-      label: "Account Settings",
+      label: 'Account Settings',
       icon: User,
-      description: "Manage your account preferences",
+      description: 'Manage your account preferences',
       onClick: () => {},
     },
     {
-      label: "Notifications",
+      label: 'Notifications',
       icon: Bell,
-      description: "Configure your notifications",
+      description: 'Configure your notifications',
       onClick: () => {},
     },
     {
-      label: "Delete Account",
+      label: 'Delete Account',
       icon: Trash,
-      description: "Permanently delete your account",
+      description: 'Permanently delete your account',
       onClick: () => {},
-      variant: "danger",
+      variant: 'danger',
     },
   ];
 
@@ -127,27 +127,27 @@ export const WithDescriptions: StoryFn<typeof Dropdown> = () => {
 
 // Different sizes
 export const Sizes: StoryFn<typeof Dropdown> = () => {
-  const [activeSize, setActiveSize] = useState<null | "sm" | "md" | "lg">(null);
+  const [activeSize, setActiveSize] = useState<null | 'sm' | 'md' | 'lg'>(null);
   const smallButtonRef = useRef<HTMLButtonElement>(null);
   const mediumButtonRef = useRef<HTMLButtonElement>(null);
   const largeButtonRef = useRef<HTMLButtonElement>(null);
 
   const items: DropdownItemType[] = [
     {
-      label: "Edit Profile",
+      label: 'Edit Profile',
       icon: Edit,
       onClick: () => {},
     },
     {
-      label: "Settings",
+      label: 'Settings',
       icon: Settings,
       onClick: () => {},
     },
     {
-      label: "Logout",
+      label: 'Logout',
       icon: LogOut,
       onClick: () => {},
-      variant: "danger",
+      variant: 'danger',
     },
   ];
 
@@ -156,13 +156,13 @@ export const Sizes: StoryFn<typeof Dropdown> = () => {
       <div>
         <button
           ref={smallButtonRef}
-          onClick={() => setActiveSize("sm")}
+          onClick={() => setActiveSize('sm')}
           className="px-3 py-1.5 text-sm bg-white border border-gray-200 rounded-lg"
         >
           Small
         </button>
         <Dropdown
-          show={activeSize === "sm"}
+          show={activeSize === 'sm'}
           onClose={() => setActiveSize(null)}
           items={items}
           size="sm"
@@ -173,13 +173,13 @@ export const Sizes: StoryFn<typeof Dropdown> = () => {
       <div>
         <button
           ref={mediumButtonRef}
-          onClick={() => setActiveSize("md")}
+          onClick={() => setActiveSize('md')}
           className="px-4 py-2 bg-white border border-gray-200 rounded-lg"
         >
           Medium
         </button>
         <Dropdown
-          show={activeSize === "md"}
+          show={activeSize === 'md'}
           onClose={() => setActiveSize(null)}
           items={items}
           size="md"
@@ -190,13 +190,13 @@ export const Sizes: StoryFn<typeof Dropdown> = () => {
       <div>
         <button
           ref={largeButtonRef}
-          onClick={() => setActiveSize("lg")}
+          onClick={() => setActiveSize('lg')}
           className="px-5 py-2.5 text-lg bg-white border border-gray-200 rounded-lg"
         >
           Large
         </button>
         <Dropdown
-          show={activeSize === "lg"}
+          show={activeSize === 'lg'}
           onClose={() => setActiveSize(null)}
           items={items}
           size="lg"
@@ -209,20 +209,20 @@ export const Sizes: StoryFn<typeof Dropdown> = () => {
 
 // Different positions
 export const Positions: StoryFn<typeof Dropdown> = () => {
-  const [activePosition, setActivePosition] = useState<null | "left" | "right">(
-    null,
+  const [activePosition, setActivePosition] = useState<null | 'left' | 'right'>(
+    null
   );
   const leftButtonRef = useRef<HTMLButtonElement>(null);
   const rightButtonRef = useRef<HTMLButtonElement>(null);
 
   const items: DropdownItemType[] = [
     {
-      label: "Edit Profile",
+      label: 'Edit Profile',
       icon: Edit,
       onClick: () => {},
     },
     {
-      label: "Settings",
+      label: 'Settings',
       icon: Settings,
       onClick: () => {},
     },
@@ -233,13 +233,13 @@ export const Positions: StoryFn<typeof Dropdown> = () => {
       <div>
         <button
           ref={leftButtonRef}
-          onClick={() => setActivePosition("left")}
+          onClick={() => setActivePosition('left')}
           className="px-4 py-2 bg-white border border-gray-200 rounded-lg"
         >
           Left Aligned
         </button>
         <Dropdown
-          show={activePosition === "left"}
+          show={activePosition === 'left'}
           onClose={() => setActivePosition(null)}
           items={items}
           position="left"
@@ -250,13 +250,13 @@ export const Positions: StoryFn<typeof Dropdown> = () => {
       <div>
         <button
           ref={rightButtonRef}
-          onClick={() => setActivePosition("right")}
+          onClick={() => setActivePosition('right')}
           className="px-4 py-2 bg-white border border-gray-200 rounded-lg"
         >
           Right Aligned
         </button>
         <Dropdown
-          show={activePosition === "right"}
+          show={activePosition === 'right'}
           onClose={() => setActivePosition(null)}
           items={items}
           position="right"
@@ -274,22 +274,22 @@ export const WithDisabledItems: StoryFn<typeof Dropdown> = () => {
 
   const items: DropdownItemType[] = [
     {
-      label: "Available Action",
+      label: 'Available Action',
       icon: Star,
       onClick: () => {},
     },
     {
-      label: "Disabled Action",
+      label: 'Disabled Action',
       icon: Share,
       onClick: () => {},
       disabled: true,
-      description: "This action is not available",
+      description: 'This action is not available',
     },
     {
-      label: "Another Disabled",
+      label: 'Another Disabled',
       icon: Trash,
       onClick: () => {},
-      variant: "danger",
+      variant: 'danger',
       disabled: true,
     },
   ];

@@ -1,34 +1,34 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Label } from "./Label";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Label } from './Label';
 
 const meta: Meta<typeof Label> = {
-  title: "UI/Label",
+  title: 'UI/Label',
   component: Label,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
   argTypes: {
     variant: {
-      control: "select",
-      options: ["default", "secondary", "ghost"],
-      description: "The visual style variant of the label",
+      control: 'select',
+      options: ['default', 'secondary', 'ghost'],
+      description: 'The visual style variant of the label',
     },
     size: {
-      control: "select",
-      options: ["sm", "md", "lg"],
-      description: "The size of the label",
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+      description: 'The size of the label',
     },
     required: {
-      control: "boolean",
-      description: "Whether to show a required indicator",
+      control: 'boolean',
+      description: 'Whether to show a required indicator',
     },
     children: {
-      control: "text",
-      description: "The content of the label",
+      control: 'text',
+      description: 'The content of the label',
     },
     className: {
-      control: "text",
-      description: "Additional CSS classes",
+      control: 'text',
+      description: 'Additional CSS classes',
     },
   },
 } satisfies Meta<typeof Label>;
@@ -39,14 +39,14 @@ type Story = StoryObj<typeof meta>;
 // Basic label story
 export const Default: Story = {
   args: {
-    children: "Email address",
+    children: 'Email address',
   },
 };
 
 // Required label story
 export const Required: Story = {
   args: {
-    children: "Password",
+    children: 'Password',
     required: true,
   },
 };
@@ -54,45 +54,45 @@ export const Required: Story = {
 // Size variations
 export const Small: Story = {
   args: {
-    children: "Small Label",
-    size: "sm",
+    children: 'Small Label',
+    size: 'sm',
   },
 };
 
 export const Medium: Story = {
   args: {
-    children: "Medium Label",
-    size: "md",
+    children: 'Medium Label',
+    size: 'md',
   },
 };
 
 export const Large: Story = {
   args: {
-    children: "Large Label",
-    size: "lg",
+    children: 'Large Label',
+    size: 'lg',
   },
 };
 
 // Variant examples
 export const Secondary: Story = {
   args: {
-    children: "Secondary Label",
-    variant: "secondary",
+    children: 'Secondary Label',
+    variant: 'secondary',
   },
 };
 
 export const Ghost: Story = {
   args: {
-    children: "Ghost Label",
-    variant: "ghost",
+    children: 'Ghost Label',
+    variant: 'ghost',
   },
 };
 
 // Combined features
 export const RequiredSecondary: Story = {
   args: {
-    children: "Required Secondary Label",
-    variant: "secondary",
+    children: 'Required Secondary Label',
+    variant: 'secondary',
     required: true,
   },
 };
@@ -128,7 +128,7 @@ export const WithFormField: Story = {
 // Example with custom className
 export const WithCustomClass: Story = {
   args: {
-    children: "Custom Styled Label",
-    className: "italic underline",
+    children: 'Custom Styled Label',
+    className: 'italic underline',
   },
 };

@@ -1,6 +1,6 @@
-// src/components/PasswordRequirements/PasswordRequirements.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import {PasswordRequirements} from './PasswordRequirements';
+import { within, userEvent, expect } from '@storybook/test';
+import { PasswordRequirements } from './PasswordRequirements';
 import React from 'react';
 
 /**
@@ -15,7 +15,8 @@ const meta: Meta<typeof PasswordRequirements> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'A dynamic password requirements checker with animated feedback.',
+        component:
+          'A dynamic password requirements checker with animated feedback.',
       },
     },
   },
@@ -31,7 +32,8 @@ const meta: Meta<typeof PasswordRequirements> = {
     },
     requirements: {
       control: 'object',
-      description: 'Array of password requirements with labels and validator functions',
+      description:
+        'Array of password requirements with labels and validator functions',
     },
   },
 } satisfies Meta<typeof PasswordRequirements>;
@@ -72,6 +74,18 @@ export const Empty: Story = {
     requirements: DEFAULT_REQUIREMENTS,
     isVisible: true,
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Verify all requirements are shown and marked as not met
+    for (const req of DEFAULT_REQUIREMENTS) {
+      const reqElement = canvas.getByText(req.label);
+      await expect(reqElement).toBeInTheDocument();
+      // Check that the requirement is not marked as met
+      const reqContainer = reqElement.closest('div');
+      await expect(reqContainer).not.toHaveClass('text-green-600');
+    }
+  },
 };
 
 /**
@@ -82,6 +96,27 @@ export const PartiallyValid: Story = {
     password: 'Password123',
     requirements: DEFAULT_REQUIREMENTS,
     isVisible: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Verify specific requirements are met
+    const upperCaseReq = canvas.getByText(/uppercase letter/);
+    const lowerCaseReq = canvas.getByText(/lowercase letter/);
+    const numberReq = canvas.getByText(/number/);
+    const lengthReq = canvas.getByText(/8 characters/);
+
+    // Check that these requirements are marked as met
+    await expect(upperCaseReq.closest('span')).toHaveClass('text-green-800');
+    await expect(lowerCaseReq.closest('span')).toHaveClass('text-green-800');
+    await expect(numberReq.closest('span')).toHaveClass('text-green-800');
+    await expect(lengthReq.closest('span')).toHaveClass('text-green-800');
+
+    // Verify special character requirement is not met
+    const specialCharReq = canvas.getByText(/special character/);
+    await expect(specialCharReq.closest('span')).not.toHaveClass(
+      'text-green-800'
+    );
   },
 };
 
@@ -94,58 +129,17 @@ export const AllValid: Story = {
     requirements: DEFAULT_REQUIREMENTS,
     isVisible: true,
   },
-};
-/**
- * Example with custom requirements
- */
-export const CustomRequirements: Story = {
-  args: {
-    password: 'mypassword',
-    requirements: [
-      {
-        label: 'Must be at least 10 characters',
-        validator: (password: string) => password.length >= 10,
-      },
-      {
-        label: 'No consecutive repeated characters',
-        validator: (password: string) => !/(.)\1/.test(password),
-      },
-      {
-        label: 'Cannot contain the word "password"',
-        validator: (password: string) => !password.toLowerCase().includes('password'),
-      },
-    ],
-    isVisible: true,
-  },
-};
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
 
-/**
- * Example with complex password patterns
- */
-export const ComplexPatterns: Story = {
-  args: {
-    password: 'Test123!@#',
-    requirements: [
-      {
-        label: 'Must contain at least 3 numbers',
-        validator: (password: string) => (password.match(/\d/g) || []).length >= 3,
-      },
-      {
-        label: 'Must contain at least 2 special characters',
-        validator: (password: string) => 
-          (password.match(/[!@#$%^&*(),.?":{}|<>]/g) || []).length >= 2,
-      },
-      {
-        label: 'Must start with a capital letter',
-        validator: (password: string) => /^[A-Z]/.test(password),
-      },
-      {
-        label: 'Must be between 8 and 20 characters',
-        validator: (password: string) => 
-          password.length >= 8 && password.length <= 20,
-      },
-    ],
-    isVisible: true,
+    // Verify all requirements are met
+    for (const req of DEFAULT_REQUIREMENTS) {
+      const reqElement = canvas.getByText(req.label);
+      await expect(reqElement).toBeInTheDocument();
+      // Check that each requirement is marked as met
+      const reqContainer = reqElement.closest('span');
+      await expect(reqContainer).toHaveClass('text-green-800');
+    }
   },
 };
 
@@ -155,7 +149,7 @@ export const ComplexPatterns: Story = {
 export const Interactive: Story = {
   render: function Render() {
     const [password, setPassword] = React.useState('');
-    
+
     return (
       <div className="w-80">
         <input
@@ -164,6 +158,7 @@ export const Interactive: Story = {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Type password..."
           className="w-full px-4 py-2 border rounded-lg mb-2"
+          data-testid="password-input"
         />
         <PasswordRequirements
           password={password}
@@ -172,7 +167,40 @@ export const Interactive: Story = {
         />
       </div>
     );
-  }
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByTestId('password-input');
+
+    // Test empty state
+    await expect(input).toHaveValue('');
+
+    // Test partial requirements
+    await userEvent.type(input, 'pass');
+    // Verify lowercase requirement is met
+    const lowerCaseReq = canvas.getByText(/lowercase letter/);
+    await expect(lowerCaseReq.closest('span')).toHaveClass('text-green-800');
+
+    // Test more requirements
+    await userEvent.clear(input);
+    await userEvent.type(input, 'Password123');
+
+    // Verify multiple requirements are met
+    const upperCaseReq = canvas.getByText(/uppercase letter/);
+    const numberReq = canvas.getByText(/number/);
+    await expect(upperCaseReq.closest('span')).toHaveClass('text-green-800');
+    await expect(numberReq.closest('span')).toHaveClass('text-green-800');
+
+    // Test all requirements
+    await userEvent.clear(input);
+    await userEvent.type(input, 'Password123!');
+
+    // Verify all requirements are met
+    for (const req of DEFAULT_REQUIREMENTS) {
+      const reqElement = canvas.getByText(req.label);
+      await expect(reqElement.closest('span')).toHaveClass('text-green-800');
+    }
+  },
 };
 
 /**
@@ -183,5 +211,20 @@ export const LongPassword: Story = {
     password: 'ThisIsAnExtremelyLongPasswordThatMightCauseWrappingIssues123!@#',
     requirements: DEFAULT_REQUIREMENTS,
     isVisible: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Verify all requirements are still met with long password
+    for (const req of DEFAULT_REQUIREMENTS) {
+      const reqElement = canvas.getByText(req.label);
+      await expect(reqElement).toBeInTheDocument();
+      await expect(reqElement.closest('span')).toHaveClass('text-green-800');
+    }
+
+    // Verify the container maintains proper layout
+    const container = canvas.getByRole('list');
+    const style = window.getComputedStyle(container);
+    await expect(style.overflow).toBe('visible');
   },
 };

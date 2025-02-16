@@ -1,8 +1,8 @@
-import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { Check, X } from "lucide-react";
-import { PASSWORD_REQUIREMENTS } from "./constants";
+import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '@/lib/utils';
+import { Check, X } from 'lucide-react';
+import { PASSWORD_REQUIREMENTS } from './constants';
 
 interface PasswordRequirement {
   label: string;
@@ -31,12 +31,12 @@ export const PasswordRequirements: React.FC<PasswordRequirementsProps> = ({
       {isVisible && (
         <motion.div
           initial={{ opacity: 0, height: 0, y: -10 }}
-          animate={{ opacity: 1, height: "auto", y: 0 }}
+          animate={{ opacity: 1, height: 'auto', y: 0 }}
           exit={{ opacity: 0, height: 0, y: -10 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           className={cn(
-            "rounded-xl border border-gray-200 bg-gradient-to-b from-white to-gray-50 shadow-sm backdrop-blur-xl p-5 mt-2",
-            className,
+            'rounded-xl border border-gray-200 bg-gradient-to-b from-white to-gray-50 shadow-sm backdrop-blur-xl p-5 mt-2',
+            className
           )}
         >
           <div className="flex items-center gap-2 mb-4">
@@ -53,8 +53,8 @@ export const PasswordRequirements: React.FC<PasswordRequirementsProps> = ({
                 <li
                   key={index}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200",
-                    isValid ? "bg-green-100/50" : "bg-gray-50/50",
+                    'flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200',
+                    isValid ? 'bg-green-100/50' : 'bg-gray-50/50'
                   )}
                 >
                   <motion.div
@@ -65,7 +65,7 @@ export const PasswordRequirements: React.FC<PasswordRequirementsProps> = ({
                     }}
                     transition={{
                       duration: 0.3,
-                      ease: "easeOut",
+                      ease: 'easeOut',
                     }}
                   >
                     {isValid ? (
@@ -80,8 +80,8 @@ export const PasswordRequirements: React.FC<PasswordRequirementsProps> = ({
                   </motion.div>
                   <span
                     className={cn(
-                      "text-sm font-medium transition-colors duration-200",
-                      isValid ? "text-green-800" : "text-gray-600",
+                      'text-sm font-medium transition-colors duration-200',
+                      isValid ? 'text-green-800' : 'text-gray-600'
                     )}
                   >
                     {requirement.label}

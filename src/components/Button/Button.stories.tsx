@@ -8,43 +8,43 @@ type ButtonProps = React.ComponentProps<typeof Button>;
 
 // Main metadata for the story
 const meta: Meta<typeof Button> = {
-  title: "UI/Button",
+  title: 'UI/Button',
   component: Button,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
   argTypes: {
     variant: {
-      control: "select",
+      control: 'select',
       options: [
-        "primary",
-        "secondary",
-        "outline",
-        "danger",
-        "success",
-        "warning",
-        "info",
-        "link",
-        "ghost",
+        'primary',
+        'secondary',
+        'outline',
+        'danger',
+        'success',
+        'warning',
+        'info',
+        'link',
+        'ghost',
       ],
-      description: "The visual style of the button",
+      description: 'The visual style of the button',
     },
     size: {
-      control: "select",
-      options: ["sm", "md", "lg", "icon"],
-      description: "The size of the button",
+      control: 'select',
+      options: ['sm', 'md', 'lg', 'icon'],
+      description: 'The size of the button',
     },
     isLoading: {
-      control: "boolean",
-      description: "Whether the button is in a loading state",
+      control: 'boolean',
+      description: 'Whether the button is in a loading state',
     },
     disabled: {
-      control: "boolean",
-      description: "Whether the button is disabled",
+      control: 'boolean',
+      description: 'Whether the button is disabled',
     },
     fullWidth: {
-      control: "boolean",
-      description: "Whether the button should take up the full width",
+      control: 'boolean',
+      description: 'Whether the button should take up the full width',
     },
   },
 };
@@ -57,52 +57,52 @@ const Template: StoryFn<typeof Button> = (args) => <Button {...args} />;
 // Basic variants
 export const Primary: StoryFn<ButtonProps> = Template.bind({});
 Primary.args = {
-  children: "Primary Button",
-  variant: "primary",
+  children: 'Primary Button',
+  variant: 'primary',
 };
 
 export const Secondary: StoryFn<ButtonProps> = Template.bind({});
 Secondary.args = {
-  children: "Secondary Button",
-  variant: "secondary",
+  children: 'Secondary Button',
+  variant: 'secondary',
 };
 
 export const Outline: StoryFn<ButtonProps> = Template.bind({});
 Outline.args = {
-  children: "Outline Button",
-  variant: "outline",
+  children: 'Outline Button',
+  variant: 'outline',
 };
 
 export const Danger: StoryFn<ButtonProps> = Template.bind({});
 Danger.args = {
-  children: "Danger Button",
-  variant: "danger",
+  children: 'Danger Button',
+  variant: 'danger',
 };
 
 // States
 export const Loading: StoryFn<ButtonProps> = Template.bind({});
 Loading.args = {
-  children: "Loading",
+  children: 'Loading',
   isLoading: true,
 };
 
 export const Disabled: StoryFn<ButtonProps> = Template.bind({});
 Disabled.args = {
-  children: "Disabled",
+  children: 'Disabled',
   disabled: true,
 };
 
 // Sizes
 export const Small: StoryFn<ButtonProps> = Template.bind({});
 Small.args = {
-  children: "Small Button",
-  size: "sm",
+  children: 'Small Button',
+  size: 'sm',
 };
 
 export const Large: StoryFn<ButtonProps> = Template.bind({});
 Large.args = {
-  children: "Large Button",
-  size: "lg",
+  children: 'Large Button',
+  size: 'lg',
 };
 
 // With icons
@@ -119,8 +119,8 @@ WithIcon.args = {
 export const IconOnly: StoryFn<ButtonProps> = Template.bind({});
 IconOnly.args = {
   children: <Mail className="h-4 w-4" />,
-  size: "icon",
-  "aria-label": "Send email",
+  size: 'icon',
+  'aria-label': 'Send email',
 };
 
 // Complex examples using render function

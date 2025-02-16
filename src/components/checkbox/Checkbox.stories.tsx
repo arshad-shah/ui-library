@@ -1,40 +1,40 @@
-import React from "react";
-import type { Meta, StoryFn } from "@storybook/react";
-import { Checkbox, CheckboxProps } from "./Checkbox";
-import { action } from "@storybook/addon-actions";
+import React from 'react';
+import type { Meta, StoryFn } from '@storybook/react';
+import { Checkbox, CheckboxProps } from './Checkbox';
+import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof Checkbox> = {
-  title: "UI/Checkbox",
+  title: 'UI/Checkbox',
   component: Checkbox,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     docs: {
       description: {
         component:
-          "A controlled checkbox component built with Radix UI primitives.",
+          'A controlled checkbox component built with Radix UI primitives.',
       },
     },
   },
   argTypes: {
     checked: {
-      control: "boolean",
-      description: "The controlled checked state of the checkbox",
+      control: 'boolean',
+      description: 'The controlled checked state of the checkbox',
     },
     disabled: {
-      control: "boolean",
-      description: "Whether the checkbox is disabled",
+      control: 'boolean',
+      description: 'Whether the checkbox is disabled',
     },
     label: {
-      control: "text",
-      description: "Label text to be displayed next to the checkbox",
+      control: 'text',
+      description: 'Label text to be displayed next to the checkbox',
     },
     onCheckedChange: {
-      action: "checked changed",
-      description: "Event handler called when the checked state changes",
+      action: 'checked changed',
+      description: 'Event handler called when the checked state changes',
     },
     className: {
-      control: "text",
-      description: "Additional CSS classes to apply to the checkbox",
+      control: 'text',
+      description: 'Additional CSS classes to apply to the checkbox',
     },
   },
   decorators: [
@@ -54,48 +54,48 @@ const Template: StoryFn<typeof Checkbox> = (args) => <Checkbox {...args} />;
 // Basic Checkbox
 export const Default: StoryFn<CheckboxProps> = Template.bind({});
 Default.args = {
-  label: "Basic Checkbox",
-  onCheckedChange: action("checked-changed"),
+  label: 'Basic Checkbox',
+  onCheckedChange: action('checked-changed'),
 };
 
 // Checked State
 export const Checked: StoryFn<CheckboxProps> = Template.bind({});
 Checked.args = {
-  label: "Checked Checkbox",
+  label: 'Checked Checkbox',
   checked: true,
-  onCheckedChange: action("checked-changed"),
+  onCheckedChange: action('checked-changed'),
 };
 
 // Disabled State
 export const Disabled: StoryFn<CheckboxProps> = Template.bind({});
 Disabled.args = {
-  label: "Disabled Checkbox",
+  label: 'Disabled Checkbox',
   disabled: true,
-  onCheckedChange: action("checked-changed"),
+  onCheckedChange: action('checked-changed'),
 };
 
 // Disabled and Checked
 export const DisabledChecked: StoryFn<CheckboxProps> = Template.bind({});
 DisabledChecked.args = {
-  label: "Disabled Checked Checkbox",
+  label: 'Disabled Checked Checkbox',
   disabled: true,
   checked: true,
-  onCheckedChange: action("checked-changed"),
+  onCheckedChange: action('checked-changed'),
 };
 
 // Without Label
 export const WithoutLabel: StoryFn<CheckboxProps> = Template.bind({});
 WithoutLabel.args = {
-  "aria-label": "Checkbox without visible label",
-  onCheckedChange: action("checked-changed"),
+  'aria-label': 'Checkbox without visible label',
+  onCheckedChange: action('checked-changed'),
 };
 
 // With Custom Styling
 export const CustomStyling: StoryFn<CheckboxProps> = Template.bind({});
 CustomStyling.args = {
-  label: "Custom Styled Checkbox",
-  className: "border-purple-500 data-[state=checked]:bg-purple-500",
-  onCheckedChange: action("checked-changed"),
+  label: 'Custom Styled Checkbox',
+  className: 'border-purple-500 data-[state=checked]:bg-purple-500',
+  onCheckedChange: action('checked-changed'),
 };
 
 // Interactive Example with State Management
@@ -105,7 +105,7 @@ export const InteractiveExample: StoryFn = () => {
     <Checkbox
       checked={checked}
       onCheckedChange={(checked) =>
-        setChecked(checked === "indeterminate" ? false : checked)
+        setChecked(checked === 'indeterminate' ? false : checked)
       }
       label="Interactive Checkbox"
     />
@@ -122,10 +122,10 @@ export const CheckboxGroup: StoryFn = () => {
 
   const handleChange =
     (key: keyof typeof checkedItems) =>
-    (checked: boolean | "indeterminate") => {
+    (checked: boolean | 'indeterminate') => {
       setCheckedItems((prev) => ({
         ...prev,
-        [key]: checked === "indeterminate" ? false : checked,
+        [key]: checked === 'indeterminate' ? false : checked,
       }));
     };
 
@@ -140,11 +140,11 @@ export const CheckboxGroup: StoryFn = () => {
         />
       ))}
       <div className="text-sm text-gray-500 mt-2">
-        Selected:{" "}
+        Selected:{' '}
         {Object.entries(checkedItems)
           .filter(([, value]) => value)
           .map(([key]) => key)
-          .join(", ")}
+          .join(', ')}
       </div>
     </div>
   );
@@ -160,7 +160,7 @@ export const FormExample: StoryFn = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    action("form-submitted")(formData);
+    action('form-submitted')(formData);
   };
 
   return (
@@ -171,7 +171,7 @@ export const FormExample: StoryFn = () => {
           onCheckedChange={(checked) =>
             setFormData((prev) => ({
               ...prev,
-              terms: checked === "indeterminate" ? false : checked,
+              terms: checked === 'indeterminate' ? false : checked,
             }))
           }
           label="I accept the terms and conditions"
@@ -182,7 +182,7 @@ export const FormExample: StoryFn = () => {
           onCheckedChange={(checked) =>
             setFormData((prev) => ({
               ...prev,
-              newsletter: checked === "indeterminate" ? false : checked,
+              newsletter: checked === 'indeterminate' ? false : checked,
             }))
           }
           label="Subscribe to newsletter"
@@ -192,7 +192,7 @@ export const FormExample: StoryFn = () => {
           onCheckedChange={(checked) =>
             setFormData((prev) => ({
               ...prev,
-              notifications: checked === "indeterminate" ? false : checked,
+              notifications: checked === 'indeterminate' ? false : checked,
             }))
           }
           label="Enable notifications"
@@ -210,7 +210,7 @@ export const FormExample: StoryFn = () => {
 
 // Indeterminate State Example
 export const IndeterminateExample: StoryFn = () => {
-  const [parent, setParent] = React.useState<boolean | "indeterminate">(false);
+  const [parent, setParent] = React.useState<boolean | 'indeterminate'>(false);
   const [children, setChildren] = React.useState({
     child1: false,
     child2: false,
@@ -221,19 +221,19 @@ export const IndeterminateExample: StoryFn = () => {
     const checkedCount = Object.values(children).filter(Boolean).length;
     if (checkedCount === 0) setParent(false);
     else if (checkedCount === Object.keys(children).length) setParent(true);
-    else setParent("indeterminate");
+    else setParent('indeterminate');
   }, [children]);
 
-  const handleParentChange = (checked: boolean | "indeterminate") => {
+  const handleParentChange = (checked: boolean | 'indeterminate') => {
     setParent(checked);
     setChildren((prev) =>
       Object.keys(prev).reduce(
         (acc, key) => ({
           ...acc,
-          [key]: checked === "indeterminate" ? false : checked,
+          [key]: checked === 'indeterminate' ? false : checked,
         }),
-        {} as typeof children,
-      ),
+        {} as typeof children
+      )
     );
   };
 
@@ -252,7 +252,7 @@ export const IndeterminateExample: StoryFn = () => {
             onCheckedChange={(checked) =>
               setChildren((prev) => ({
                 ...prev,
-                [key]: checked === "indeterminate" ? false : checked,
+                [key]: checked === 'indeterminate' ? false : checked,
               }))
             }
             label={`Child Checkbox ${key.slice(-1)}`}

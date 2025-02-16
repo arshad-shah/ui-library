@@ -10,18 +10,19 @@ const meta: Meta<typeof CircularProgressBar> = {
   tags: ['autodocs'],
   argTypes: {
     value: {
-      control: { 
-        type: 'number', 
-        min: 0, 
-        max: 100, 
-        step: 1 
+      control: {
+        type: 'number',
+        min: 0,
+        max: 100,
+        step: 1,
       },
-      description: 'Current progress value (0-100), or null for indeterminate state',
+      description:
+        'Current progress value (0-100), or null for indeterminate state',
     },
     max: {
-      control: { 
-        type: 'number', 
-        min: 1 
+      control: {
+        type: 'number',
+        min: 1,
       },
       description: 'Maximum value (defaults to 100)',
     },
@@ -42,7 +43,8 @@ const meta: Meta<typeof CircularProgressBar> = {
     },
     showPercentage: {
       control: 'boolean',
-      description: 'Show percentage text in the center (not shown in indeterminate state)',
+      description:
+        'Show percentage text in the center (not shown in indeterminate state)',
     },
     animated: {
       control: 'boolean',

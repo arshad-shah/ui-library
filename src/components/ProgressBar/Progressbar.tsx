@@ -34,44 +34,45 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     default: {
       bar: 'bg-gradient-to-r from-blue-500 to-blue-600',
       background: 'bg-blue-100',
-      text: 'text-blue-700'
+      text: 'text-blue-700',
     },
     success: {
       bar: 'bg-gradient-to-r from-emerald-500 to-emerald-600',
       background: 'bg-emerald-100',
-      text: 'text-emerald-700'
+      text: 'text-emerald-700',
     },
     warning: {
       bar: 'bg-gradient-to-r from-amber-500 to-amber-600',
       background: 'bg-amber-100',
-      text: 'text-amber-700'
+      text: 'text-amber-700',
     },
     danger: {
       bar: 'bg-gradient-to-r from-red-500 to-red-600',
       background: 'bg-red-100',
-      text: 'text-red-700'
+      text: 'text-red-700',
     },
     info: {
       bar: 'bg-gradient-to-r from-cyan-500 to-cyan-600',
       background: 'bg-cyan-100',
-      text: 'text-cyan-700'
-    }
+      text: 'text-cyan-700',
+    },
   };
 
   // Define size variations
   const sizes = {
     sm: 'h-2',
     md: 'h-3',
-    lg: 'h-4'
+    lg: 'h-4',
   };
 
   // Animation for the stripes
-  const stripeAnimation = animated ? 
-    'before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:via-white/20 before:to-transparent before:animate-[shine_1.5s_ease-in-out_infinite]' : '';
+  const stripeAnimation = animated
+    ? 'before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:via-white/20 before:to-transparent before:animate-[shine_1.5s_ease-in-out_infinite]'
+    : '';
 
   return (
     <div className="relative">
-      <div 
+      <div
         className={`
           w-full rounded-full overflow-hidden
           ${colorSchemes[variant].background}
@@ -91,13 +92,15 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
           style={{ width: `${percentage}%` }}
         />
       </div>
-      
+
       {showPercentage && (
-        <div className={`
+        <div
+          className={`
           absolute right-0 -top-6
           text-sm font-medium
           ${colorSchemes[variant].text}
-        `}>
+        `}
+        >
           {percentage.toFixed(0)}%
         </div>
       )}
