@@ -4,7 +4,13 @@ on:
   push:
     branches:
       - master
-
+      
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  packages: write
+  
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
