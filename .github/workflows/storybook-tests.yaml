@@ -1,0 +1,44 @@
+name: 'Storybook Tests'
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # This ensures tags are fetched
+          fetch-tags: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright
+        run: pnpm dlx playwright install --with-deps
+      - name: Build Storybook
+        run: pnpm build-storybook --quiet
+
+      - name: Serve Storybook and run tests
+        run: |
+          pnpm concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+            "pnpm http-server storybook-static --port 6006 --silent" \
+            "pnpm wait-on tcp:6006 && pnpm test-storybook"

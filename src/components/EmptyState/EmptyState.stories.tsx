@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import {EmptyState} from "./EmptyState";
-import Button from "@/components/Button";
+import type { Meta, StoryObj } from '@storybook/react';
+import { EmptyState } from './EmptyState';
+import Button from '@/components/Button';
 import {
   Plus,
   Search,
@@ -8,32 +8,32 @@ import {
   Inbox,
   Settings,
   FolderPlus,
-} from "lucide-react";
+} from 'lucide-react';
 
 const meta: Meta<typeof EmptyState> = {
-  title: "UI/EmptyState",
+  title: 'UI/EmptyState',
   component: EmptyState,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     docs: {
       description: {
         component:
-          "Empty state component for displaying when no content is available.",
+          'Empty state component for displaying when no content is available.',
       },
     },
   },
   argTypes: {
     heading: {
-      control: "text",
-      description: "Main heading text",
+      control: 'text',
+      description: 'Main heading text',
     },
     message: {
-      control: "text",
-      description: "Descriptive message text",
+      control: 'text',
+      description: 'Descriptive message text',
     },
     action: {
-      control: "object",
-      description: "Action element (button, link, etc.)",
+      control: 'object',
+      description: 'Action element (button, link, etc.)',
     },
   },
   decorators: [
@@ -51,16 +51,16 @@ type Story = StoryObj<typeof EmptyState>;
 // Basic empty state
 export const Basic: Story = {
   args: {
-    heading: "No items found",
-    message: "Get started by creating your first item.",
+    heading: 'No items found',
+    message: 'Get started by creating your first item.',
   },
 };
 
 // With action button
 export const WithAction: Story = {
   args: {
-    heading: "No projects yet",
-    message: "Create your first project to get started.",
+    heading: 'No projects yet',
+    message: 'Create your first project to get started.',
     action: (
       <Button>
         <Plus className="mr-2 h-4 w-4" />
@@ -73,8 +73,8 @@ export const WithAction: Story = {
 // Search results empty state
 export const SearchResults: Story = {
   args: {
-    heading: "No results found",
-    message: "Try adjusting your search terms or filters.",
+    heading: 'No results found',
+    message: 'Try adjusting your search terms or filters.',
     action: (
       <div className="flex flex-col items-center space-y-4">
         <Search className="h-12 w-12 text-gray-400" />
@@ -87,8 +87,8 @@ export const SearchResults: Story = {
 // File upload empty state
 export const FileUpload: Story = {
   args: {
-    heading: "No files uploaded",
-    message: "Drag and drop files here or click to upload.",
+    heading: 'No files uploaded',
+    message: 'Drag and drop files here or click to upload.',
     action: (
       <div className="text-center">
         <FileBox className="mx-auto h-12 w-12 text-gray-400 mb-4" />
@@ -101,8 +101,8 @@ export const FileUpload: Story = {
 // Empty inbox state
 export const EmptyInbox: Story = {
   args: {
-    heading: "Your inbox is empty",
-    message: "Messages you receive will appear here.",
+    heading: 'Your inbox is empty',
+    message: 'Messages you receive will appear here.',
     action: (
       <div className="text-center">
         <Inbox className="mx-auto h-12 w-12 text-gray-400 mb-4" />
@@ -117,7 +117,7 @@ export const EmptyInbox: Story = {
 // Settings empty state
 export const EmptySettings: Story = {
   args: {
-    heading: "No custom settings",
+    heading: 'No custom settings',
     message: "You haven't configured any custom settings yet.",
     action: (
       <div className="space-y-4">
@@ -131,8 +131,8 @@ export const EmptySettings: Story = {
 // Empty folder state
 export const EmptyFolder: Story = {
   args: {
-    heading: "Empty folder",
-    message: "This folder has no items yet.",
+    heading: 'Empty folder',
+    message: 'This folder has no items yet.',
     action: (
       <div className="space-y-4 text-center">
         <FolderPlus className="mx-auto h-12 w-12 text-gray-400" />
@@ -148,8 +148,8 @@ export const EmptyFolder: Story = {
 // With secondary message
 export const WithSecondaryMessage: Story = {
   args: {
-    heading: "No notifications",
-    message: "When you receive notifications, they will appear here.",
+    heading: 'No notifications',
+    message: 'When you receive notifications, they will appear here.',
     action: (
       <div className="space-y-3 text-center">
         <p className="text-sm text-gray-500">
@@ -164,8 +164,8 @@ export const WithSecondaryMessage: Story = {
 // Loading state
 export const Loading: Story = {
   args: {
-    heading: "Loading content",
-    message: "Please wait while we fetch your data...",
+    heading: 'Loading content',
+    message: 'Please wait while we fetch your data...',
     action: (
       <div className="flex justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
@@ -177,8 +177,8 @@ export const Loading: Story = {
 // Error state
 export const Error: Story = {
   args: {
-    heading: "Unable to load data",
-    message: "An error occurred while fetching your content.",
+    heading: 'Unable to load data',
+    message: 'An error occurred while fetching your content.',
     action: (
       <div className="space-y-3 text-center">
         <p className="text-sm text-red-600">Error: Network connection failed</p>
@@ -191,8 +191,8 @@ export const Error: Story = {
 // First time user
 export const FirstTimeUser: Story = {
   args: {
-    heading: "Welcome to the App!",
-    message: "Complete these steps to get started with your workspace.",
+    heading: 'Welcome to the App!',
+    message: 'Complete these steps to get started with your workspace.',
     action: (
       <div className="space-y-4">
         <div className="space-y-2">

@@ -27,11 +27,7 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'cjs'}`,
     },
     rollupOptions: {
-      external: (id) => {
-        return externalPackages.some(
-          (pkg) => id === pkg || id.startsWith(`${pkg}/`)
-        );
-      },
+      external: [...externalPackages],
       output: [
         {
           format: 'es',

@@ -1,5 +1,5 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -35,7 +35,7 @@ export const formatDate = (
     // Check if date is valid
     if (isNaN(date.getTime())) {
       console.warn(`Invalid date string provided: ${dateString}`);
-      return "Invalid date";
+      return 'Invalid date';
     }
 
     const now = new Date();
@@ -47,12 +47,12 @@ export const formatDate = (
 
     // Handle future dates if enabled
     if (options.threshold?.future && diffInMilliseconds > 0) {
-      if (diffInMinutes < 1) return "in a few seconds";
-      if (diffInMinutes === 1) return "in 1 minute";
+      if (diffInMinutes < 1) return 'in a few seconds';
+      if (diffInMinutes === 1) return 'in 1 minute';
       if (diffInMinutes < 60) return `in ${diffInMinutes} minutes`;
-      if (diffInHours === 1) return "in 1 hour";
+      if (diffInHours === 1) return 'in 1 hour';
       if (diffInHours < 24) return `in ${diffInHours} hours`;
-      if (diffInDays === 1) return "tomorrow";
+      if (diffInDays === 1) return 'tomorrow';
       if (diffInDays < 7) return `in ${diffInDays} days`;
     }
 
@@ -64,19 +64,19 @@ export const formatDate = (
       if (isWithinThreshold) {
         // Just now / few seconds ago
         if (Math.abs(diffInMinutes) < 1) {
-          return "just now";
+          return 'just now';
         }
 
         // Minutes
         if (Math.abs(diffInMinutes) < 60) {
           const mins = Math.abs(diffInMinutes);
-          return `${mins} ${mins === 1 ? "minute" : "minutes"} ago`;
+          return `${mins} ${mins === 1 ? 'minute' : 'minutes'} ago`;
         }
 
         // Hours
         if (Math.abs(diffInHours) < 24) {
           const hrs = Math.abs(diffInHours);
-          return `${hrs} ${hrs === 1 ? "hour" : "hours"} ago`;
+          return `${hrs} ${hrs === 1 ? 'hour' : 'hours'} ago`;
         }
       }
 
@@ -85,13 +85,13 @@ export const formatDate = (
       yesterday.setDate(yesterday.getDate() - 1);
 
       if (date.toDateString() === now.toDateString()) {
-        return options.includeTime ? `Today at ${formatTime(date)}` : "Today";
+        return options.includeTime ? `Today at ${formatTime(date)}` : 'Today';
       }
 
       if (date.toDateString() === yesterday.toDateString()) {
         return options.includeTime
           ? `Yesterday at ${formatTime(date)}`
-          : "Yesterday";
+          : 'Yesterday';
       }
     }
 
@@ -102,15 +102,15 @@ export const formatDate = (
 
     return formatFullDate(date, now, options.includeTime ?? false);
   } catch (error) {
-    console.error("Error formatting date:", error);
-    return "Invalid date";
+    console.error('Error formatting date:', error);
+    return 'Invalid date';
   }
 };
 
 const formatTime = (date: Date): string => {
-  return date.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
     hour12: true,
   });
 };
@@ -118,10 +118,10 @@ const formatTime = (date: Date): string => {
 const formatShortDate = (date: Date, now: Date): string => {
   const isThisYear = date.getFullYear() === now.getFullYear();
 
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: isThisYear ? undefined : "2-digit",
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: isThisYear ? undefined : '2-digit',
   });
 };
 
@@ -132,11 +132,11 @@ const formatFullDate = (
 ): string => {
   const isThisYear = date.getFullYear() === now.getFullYear();
 
-  const dateStr = date.toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    year: isThisYear ? undefined : "numeric",
+  const dateStr = date.toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    year: isThisYear ? undefined : 'numeric',
   });
 
   if (!includeTime) return dateStr;

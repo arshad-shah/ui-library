@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
+    '@storybook/addon-coverage',
   ],
   framework: {
     name: '@storybook/react-vite',
@@ -15,11 +16,14 @@ const config: StorybookConfig = {
   docs: {
     autodocs: false,
   },
+  features: {
+    interactionsDebugger: true,
+  },
   core: {
     builder: '@storybook/builder-vite',
   },
   async viteFinal(config) {
-    return {
+    const newConfig = {
       ...config,
       resolve: {
         ...config.resolve,
@@ -28,8 +32,44 @@ const config: StorybookConfig = {
           '@': '/src',
         },
       },
+      optimizeDeps: {
+        ...config.optimizeDeps,
+        exclude: [],
+      },
+      build: {
+        ...config.build,
+        rollupOptions: {
+          ...config.build?.rollupOptions,
+          external: [],
+        },
+      },
     };
+    return  newConfig;
   },
 };
 
 export default config;
+
+
+  // async viteFinal(config) {
+  //   console.log('config', config);
+    
+  //   const {mergeConfig} = await import('vite');
+  //   const mergedConfig = mergeConfig(config, {
+  //     resolve: {
+  //       alias: {
+  //         '@': '/src',
+  //       },
+  //     },
+  //     optimizeDeps: {
+  //       exclude: [],
+  //     },
+  //     build: {
+  //       rollupOptions: {
+  //         external: [],
+  //       },
+  //     },
+  //   });
+  //   console.log('mergedConfig', mergedConfig);
+  //   return  mergedConfig;
+  // },
