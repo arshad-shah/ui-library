@@ -28,7 +28,9 @@
     "build-storybook": "storybook build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
-    "prepare": "pnpm run build"
+    "prepare": "pnpm run build",
+    "release": "pnpm run build && changeset publish",
+    "version": "changeset version"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -39,6 +41,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@changesets/cli": "^2.27.12",
     "@chromatic-com/storybook": "3.2.4",
     "@storybook/addon-essentials": "8.5.6",
     "@storybook/addon-interactions": "8.5.6",
