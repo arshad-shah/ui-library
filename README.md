@@ -25,6 +25,8 @@ A modern React component library built with TypeScript and TailwindCSS, offering
 - Label
 - Password Requirements
 - Progress Bar
+- Circular progress bar
+- Input Component
 
 ## Installation
 
