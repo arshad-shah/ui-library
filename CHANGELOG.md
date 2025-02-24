@@ -1,5 +1,11 @@
 # @arshad-shah/ui-library
 
+## 0.7.0
+
+### Minor Changes
+
+- a7683f0: New slider and switch
+
 ## 0.4.0
 
 ### Minor Changes
