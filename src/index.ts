@@ -12,3 +12,5 @@ export { ErrorState } from '@/components/ErrorState';
 export { ProgressBar } from '@/components/ProgressBar';
 export { CircularProgressBar } from '@/components/CircularProgressBar';
 export { Input } from '@/components/Input';
+export { Slider } from '@/components/Slider';
+export { Switch } from '@/components/Switch';
