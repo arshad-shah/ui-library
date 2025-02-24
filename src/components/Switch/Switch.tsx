@@ -12,32 +12,60 @@ interface SwitchProps extends React.ComponentPropsWithoutRef<typeof SwitchPrimit
 const getVariantStyles = (variant: SwitchProps['variant'] = 'default') => {
   const variants = {
     default: {
-      base: 'shadow-sm',
-      checked: 'data-[state=checked]:bg-primary',
-      unchecked: 'data-[state=unchecked]:bg-input',
-      hover: 'hover:data-[state=checked]:bg-primary/90',
-      focusRing: 'focus-visible:ring-ring'
+      base: 'shadow-lg backdrop-blur-sm bg-opacity-20',
+      checked: [
+        'data-[state=checked]:bg-slate-700',
+        'data-[state=checked]:before:absolute data-[state=checked]:before:inset-0',
+        'data-[state=checked]:before:rounded-full data-[state=checked]:before:bg-gradient-to-r',
+        'data-[state=checked]:before:from-slate-400/20 data-[state=checked]:before:to-transparent',
+      ].join(' '),
+      unchecked: 'data-[state=unchecked]:bg-transparent data-[state=unchecked]:border-slate-500',
+      hover: 'hover:data-[state=checked]:shadow-slate-500/30 hover:shadow-xl',
+      focusRing: 'focus-visible:ring-slate-400',
+      thumbChecked: 'data-[state=checked]:bg-white',
+      thumbUnchecked: 'data-[state=unchecked]:bg-slate-500'
     },
     violet: {
-      base: 'shadow-violet-200/50',
-      checked: 'data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-violet-500 data-[state=checked]:to-violet-600',
-      unchecked: 'data-[state=unchecked]:bg-gray-200',
-      hover: 'hover:data-[state=checked]:shadow-violet-200/80',
-      focusRing: 'focus-visible:ring-violet-500'
+      base: 'shadow-lg backdrop-blur-sm bg-opacity-20',
+      checked: [
+        'data-[state=checked]:bg-violet-500',
+        'data-[state=checked]:before:absolute data-[state=checked]:before:inset-0',
+        'data-[state=checked]:before:rounded-full data-[state=checked]:before:bg-gradient-to-r',
+        'data-[state=checked]:before:from-white/20 data-[state=checked]:before:to-transparent',
+      ].join(' '),
+      unchecked: 'data-[state=unchecked]:bg-transparent data-[state=unchecked]:border-violet-500',
+      hover: 'hover:data-[state=checked]:shadow-violet-500/30 hover:shadow-xl',
+      focusRing: 'focus-visible:ring-violet-400',
+      thumbChecked: 'data-[state=checked]:bg-white',
+      thumbUnchecked: 'data-[state=unchecked]:bg-violet-500'
     },
     blue: {
-      base: 'shadow-blue-200/50',
-      checked: 'data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-blue-600',
-      unchecked: 'data-[state=unchecked]:bg-gray-200',
-      hover: 'hover:data-[state=checked]:shadow-blue-200/80',
-      focusRing: 'focus-visible:ring-blue-500'
+      base: 'shadow-lg backdrop-blur-sm bg-opacity-20',
+      checked: [
+        'data-[state=checked]:bg-blue-500',
+        'data-[state=checked]:before:absolute data-[state=checked]:before:inset-0',
+        'data-[state=checked]:before:rounded-full data-[state=checked]:before:bg-gradient-to-r',
+        'data-[state=checked]:before:from-white/20 data-[state=checked]:before:to-transparent',
+      ].join(' '),
+      unchecked: 'data-[state=unchecked]:bg-transparent data-[state=unchecked]:border-blue-500',
+      hover: 'hover:data-[state=checked]:shadow-blue-500/30 hover:shadow-xl',
+      focusRing: 'focus-visible:ring-blue-400',
+      thumbChecked: 'data-[state=checked]:bg-white',
+      thumbUnchecked: 'data-[state=unchecked]:bg-blue-500'
     },
     green: {
-      base: 'shadow-green-200/50',
-      checked: 'data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-green-500 data-[state=checked]:to-green-600',
-      unchecked: 'data-[state=unchecked]:bg-gray-200',
-      hover: 'hover:data-[state=checked]:shadow-green-200/80',
-      focusRing: 'focus-visible:ring-green-500'
+      base: 'shadow-lg backdrop-blur-sm bg-opacity-20',
+      checked: [
+        'data-[state=checked]:bg-emerald-500',
+        'data-[state=checked]:before:absolute data-[state=checked]:before:inset-0',
+        'data-[state=checked]:before:rounded-full data-[state=checked]:before:bg-gradient-to-r',
+        'data-[state=checked]:before:from-white/20 data-[state=checked]:before:to-transparent',
+      ].join(' '),
+      unchecked: 'data-[state=unchecked]:bg-transparent data-[state=unchecked]:border-emerald-500',
+      hover: 'hover:data-[state=checked]:shadow-emerald-500/30 hover:shadow-xl',
+      focusRing: 'focus-visible:ring-emerald-400',
+      thumbChecked: 'data-[state=checked]:bg-white',
+      thumbUnchecked: 'data-[state=unchecked]:bg-emerald-500'
     }
   };
   return variants[variant];
@@ -46,16 +74,28 @@ const getVariantStyles = (variant: SwitchProps['variant'] = 'default') => {
 const getSizeStyles = (size: SwitchProps['size'] = 'md') => {
   const sizes = {
     sm: {
-      root: 'h-4 w-7',
-      thumb: 'h-3 w-3 data-[state=checked]:translate-x-3',
+      root: 'h-5 w-9',
+      thumb: [
+        'h-4 w-4',
+        'data-[state=checked]:translate-x-4',
+        'after:h-4 after:w-4'
+      ].join(' '),
     },
     md: {
-      root: 'h-6 w-11',
-      thumb: 'h-5 w-5 data-[state=checked]:translate-x-5',
+      root: 'h-7 w-12',
+      thumb: [
+        'h-6 w-6',
+        'data-[state=checked]:translate-x-5',
+        'after:h-6 after:w-6'
+      ].join(' '),
     },
     lg: {
-      root: 'h-7 w-14',
-      thumb: 'h-6 w-6 data-[state=checked]:translate-x-7',
+      root: 'h-8 w-14',
+      thumb: [
+        'h-7 w-7',
+        'data-[state=checked]:translate-x-6',
+        'after:h-7 after:w-7'
+      ].join(' '),
     },
   };
   return sizes[size];
@@ -71,17 +111,28 @@ export const Switch = React.forwardRef<
   return (
     <SwitchPrimitives.Root
       className={cn(
-        "peer relative inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent",
-        "transition-all duration-200",
+        // Base styles
+        "peer relative inline-flex shrink-0 cursor-pointer items-center rounded-full",
+        "border-2 border-transparent overflow-hidden",
+        
+        // Transitions
+        "transition-all duration-300 ease-spring",
+        
+        // States
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
         "disabled:cursor-not-allowed disabled:opacity-50",
+        
+        // Hover effects
+        "hover:shadow-lg hover:scale-105",
+        "active:scale-95",
+        
+        // Custom styles
         styles.base,
         styles.checked,
         styles.unchecked,
         styles.hover,
         styles.focusRing,
         sizeStyles.root,
-        "hover:shadow-lg",
         className
       )}
       {...props}
@@ -89,12 +140,28 @@ export const Switch = React.forwardRef<
     >
       <SwitchPrimitives.Thumb
         className={cn(
-          "pointer-events-none block rounded-full bg-white",
+          // Base styles
+          "pointer-events-none block rounded-full",
           "shadow-lg ring-0",
-          "transition-all duration-200",
-          "data-[state=checked]:scale-105",
+          
+          // Transitions
+          "transition-all duration-300 ease-spring",
+          
           "data-[state=unchecked]:translate-x-0",
+          
+          // After element for shine effect
+          "after:absolute after:top-0 after:left-0",
+          "after:rounded-full after:opacity-0",
+          "after:transition-opacity after:duration-200",
+          "after:bg-gradient-to-br after:from-white/80 after:to-transparent",
+          "data-[state=checked]:after:opacity-100",
+          
+          // Custom styles
+          styles.thumbChecked,
+          styles.thumbUnchecked,
           sizeStyles.thumb,
+          
+          // Hover effects
           "group-hover/switch:shadow-lg"
         )}
       />
